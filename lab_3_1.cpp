@@ -1,6 +1,5 @@
 #include <windows.h>
 #include <iostream>
-#include <bitset>
 #include <cmath>
 
 using namespace std;
@@ -42,7 +41,7 @@ int main() {
 
     double Pi;
 
-    printf("Ââåäèòå êîëè÷åñòâî ïîòîêîâ: ");
+    printf("Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ ÃªÃ®Ã«Ã¨Ã·Ã¥Ã±Ã²Ã¢Ã® Ã¯Ã®Ã²Ã®ÃªÃ®Ã¢: ");
     cin >> numThreads;
 
     id = new int[numThreads];
@@ -54,7 +53,7 @@ int main() {
         Threads[i] = CreateThread(nullptr, 0, ThreadProc, &id[i], CREATE_SUSPENDED, &lpThreadId[i]);
     }
 
-    startTime = (DWORD)GetTickCount64();
+    startTime = GetTickCount();
 
     for (int i = 0; i < numThreads; i++) {
         ResumeThread(Threads[i]);
@@ -64,10 +63,10 @@ int main() {
 
     Pi = c * (1.0 / N);
 
-    endTime = (DWORD)GetTickCount64();
+    endTime = GetTickCount();
 
-    printf("Íàéäåííîå ÷èñëî ïè: %3.11f\n", Pi);
-    printf("Âðåìÿ: %3.3f\n", (float)(endTime - startTime));
+    printf("ÃÃ Ã©Ã¤Ã¥Ã­Ã­Ã®Ã¥ Ã·Ã¨Ã±Ã«Ã® Ã¯Ã¨: %3.11f\n", Pi);
+    printf("Ã‚Ã°Ã¥Ã¬Ã¿: %lu\n", (endTime - startTime));
     system("pause");
     return 0;
 }
